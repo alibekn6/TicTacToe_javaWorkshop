@@ -1,4 +1,5 @@
 // Created by Alibekn.INC;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -12,15 +13,19 @@ public class TicTacToe {
         };
 
         printBoard(gameBoard);
+        while (true) {
+            Random random = new Random();
+            Scanner scanner = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your placement (1-9)");
-        int pos = scanner.nextInt();
+            System.out.println("Enter your placement (1-9)");
+            int PlayerPos = scanner.nextInt();
+            int AIpos = random.nextInt(9)+1;
 
-        System.out.println(pos);
+            place(gameBoard, PlayerPos, "user");
+            place(gameBoard, AIpos, "AI");
 
-        place(gameBoard, pos, "player");
-        printBoard(gameBoard);
+            printBoard(gameBoard);
+        }
     }
 
     public static void printBoard(char[][] gameBoard) {
@@ -35,9 +40,9 @@ public class TicTacToe {
     public static void place(char[][] gameBoard, int pos, String user) {
         char symbol = ' ';
 
-        if (user.equals("player")) {
+        if (user.equals("user")) {
             symbol = 'X';
-        } else if (user.equals("CPU")) {
+        } else if (user.equals("AI")) {
             symbol = 'O';
         }
 
