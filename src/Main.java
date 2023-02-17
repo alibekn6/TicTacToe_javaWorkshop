@@ -111,7 +111,7 @@ public class Main {
             } else if (compPositions.contains(l)) {
                 return "Computer wins!!!";
             } else if (playerPositions.size() + compPositions.size() == 9) {
-                return "CAT";
+                return "draw / tie";
             }
         }
 
