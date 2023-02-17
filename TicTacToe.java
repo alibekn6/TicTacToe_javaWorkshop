@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 public class TicTacToe {
     static ArrayList<Integer> PlayerPosition = new ArrayList<Integer>();
+
     public static void main(String[] args) {
         char[][] gameBoard = {
                 {' ', '|', ' ', '|', ' '},
@@ -24,19 +25,20 @@ public class TicTacToe {
 
             System.out.println("Enter your placement (1-9)");
             int PlayerPos = scanner.nextInt();
-            int AIpos = random.nextInt(9)+1;
+            int AIpos = random.nxtInt(9)+1;
 
             place(gameBoard, PlayerPos, "user");
             place(gameBoard, AIpos, "AI");
 
             printBoard(gameBoard);
+            checkWinner();
             scanner.close();
         }
 
-    
+
     }
 
-    public static void printBoard(char[][] gameBoard) {
+    public static void printBoard(char[][] geameBoard) {
         for (char[] row : gameBoard) {
             for (char c : row) {
                 System.out.print(c);
@@ -78,6 +80,26 @@ public class TicTacToe {
 
         List cross1 = Arrays.asList(1, 5, 9);
         List cross2 = Arrays.asList(7, 5, 3);
+
+        List<List> winning = new ArrayList<List>();
+        winning.add(topRow);
+        winning.add(midRow);
+        winning.add(botRow);
+        winning.add(leftCol);
+        winning.add(midCol);
+        winning.add(rightCol);
+        winning.add(cross1);
+        winning.add(cross2);
+
+        for (List l : winning) {
+            if (PlayerPosition.containsAll(l)) {
+                return "Congratulations you won!";
+            } else if (AIPositions.contains(l)) {
+                return "AI wins!";
+            } else if (playerPosition.size() + AIPositions.size() == 9) {
+                return "CAT";
+            }
+        }
 
 
         return "";        
