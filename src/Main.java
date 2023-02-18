@@ -7,12 +7,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        char[][] board = {{' ', '|', ' ', '|', ' '},
-                {'-', '+', '-', '+', '-'},
-                {' ', '|', ' ', '|', ' '},
-                {'-', '+', '-', '+', '-'},
-                {' ', '|', ' ', '|', ' '},
-
+        char[][] board = {
+                {' ', ' ', ' '},
+                {' ', ' ', ' '},
+                {' ', ' ', ' '},
         };
         printBoard(board);
         while (true) {
@@ -53,8 +51,11 @@ public class Main {
 
     public static void printBoard(char[][] board) {
         for (char[] row : board) {
+            System.out.println("---------");
             for (char c : row) {
+                System.out.print("|");
                 System.out.print(c);
+                System.out.print("|");
             }
             System.out.println();
         }
@@ -70,18 +71,10 @@ public class Main {
             symbol = 'O';
             compPositions.add(pos);
         }
-        switch (pos) {
-            case 1 -> board[0][0] = symbol;
-            case 2 -> board[0][2] = symbol;
-            case 3 -> board[0][4] = symbol;
-            case 4 -> board[2][0] = symbol;
-            case 5 -> board[2][2] = symbol;
-            case 6 -> board[2][4] = symbol;
-            case 7 -> board[4][0] = symbol;
-            case 8 -> board[4][2] = symbol;
-            case 9 -> board[4][4] = symbol;
-        }
+        int row = (pos-1) / 3;
+        int col = (pos-1) % 3;
 
+        board[row][col] = symbol;
     }
 
     public static String checkWinner() {
@@ -108,7 +101,7 @@ public class Main {
         for (List l : winning) {
             if (playerPositions.containsAll(l)) {
                 return "Congratulations! you won";
-            } else if (compPositions.contains(l)) {
+            } else if (compPositions.containsAll(l)) {
                 return "Computer wins!!!";
             } else if (playerPositions.size() + compPositions.size() == 9) {
                 return "draw / tie";
