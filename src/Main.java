@@ -112,9 +112,11 @@ public class Main {
                 return "Congratulations! you won";
             } else if (compPositions.containsAll(l)) {
                 return "Computer wins!!!";
-            } else if (playerPositions.size() + compPositions.size() == 9) {
-                return "draw / tie";
             }
+        }
+
+        if (playerPositions.size() + compPositions.size() == 9) {
+            return "draw / tie";
         }
 
         return "";
