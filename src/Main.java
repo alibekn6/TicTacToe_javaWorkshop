@@ -51,11 +51,12 @@ public class Main {
 
     public static void printBoard(char[][] board) {
         for (char[] row : board) {
-            System.out.println("---------");
             for (char c : row) {
-                System.out.print("|");
-                System.out.print(c);
-                System.out.print("|");
+                if(c == ' '){
+                    System.out.print(".");
+                } else {
+                    System.out.print(c);
+                }
             }
             System.out.println();
         }
@@ -71,14 +72,22 @@ public class Main {
             symbol = 'O';
             compPositions.add(pos);
         }
-        int row = (pos-1) / 3;
-        int col = (pos-1) % 3;
 
-        board[row][col] = symbol;
+        switch (pos) {
+            case 1 -> board[0][0] = symbol;
+            case 2 -> board[0][1] = symbol;
+            case 3 -> board[0][2] = symbol;
+            case 4 -> board[1][0] = symbol;
+            case 5 -> board[1][1] = symbol;
+            case 6 -> board[1][2] = symbol;
+            case 7 -> board[2][0] = symbol;
+            case 8 -> board[2][1] = symbol;
+            case 9 -> board[2][2] = symbol;
+        }
     }
 
     public static String checkWinner() {
-        List topRow = Arrays.asList(1, 2, 3); //comment
+        List topRow = Arrays.asList(1, 2, 3);
         List midRow = Arrays.asList(4, 5, 6);
         List botRow = Arrays.asList(7, 8, 9);
         List leftCol = Arrays.asList(1, 4, 7);
